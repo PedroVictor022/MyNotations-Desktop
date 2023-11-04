@@ -1,4 +1,4 @@
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoMdArrowRoundBack, IoIosHome } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function URLBar() {
@@ -7,7 +7,7 @@ export default function URLBar() {
   const navigate = useNavigate();
 
   const renderedPath =
-    path === "/" ? "@page/login-continue" : `@my-notation-app/app/${path}`;
+    path === "/" ? "@page/login" : `${path}`;
 
   const handleBackNavigate = () => {
     if (path !== "/") {
@@ -15,12 +15,30 @@ export default function URLBar() {
     }
   };
 
+  const handleBackToHome = () => {
+    if (path === "/home") {
+      return;
+    }
+    navigate("/home");
+  };
+
   return (
-    <div className="w-full p-4 absolute top-0 gap-4 bg-transparent text-gray-400 rounded-full flex items-center justify-center">
-      <div className="w-1/2 bg-zinc-800 rounded-full flex items-center justify-center p-[3px] text-gray-300">
-        <p className="text-sm">{renderedPath}</p>
+    <div className="w-full min-w-[340px] absolute p-4 gap-4 bg-transparent rounded-full flex items-center justify-center ">
+      <button
+        className="text-gray-600 hover:text-gray-50 text-xl transition-colors"
+        onClick={handleBackToHome}
+      >
+        <IoIosHome />
+      </button>
+      <div className="w-1/2 bg-zinc-800/60 rounded-full flex items-center justify-center p-[3px] transition-colors">
+        <p className="text-sm text-gray-400  hover:text-gray-100">
+          {renderedPath}
+        </p>
       </div>
-      <button className="mt-1 text-xl" onClick={handleBackNavigate}>
+      <button
+        className="text-gray-600 hover:text-gray-50 text-xl transition-colors"
+        onClick={handleBackNavigate}
+      >
         <IoMdArrowRoundBack />
       </button>
     </div>

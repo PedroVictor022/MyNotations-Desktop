@@ -40,7 +40,7 @@ export default function Login() {
         }}
       >
         <button className="text-lg bg-blue-700 pl-3 pr-3 rounded-full font-bold hover:bg-blue-600 leading-relaxed transition-colors"
-      onClick={() => navigate("/home")}
+      onClick={() => navigate("home")}
         >Continue</button>
       </motion.div>
     </div>

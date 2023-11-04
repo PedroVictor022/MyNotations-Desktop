@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 import LoadingScreenComponent from "./components/ui/LoadingSpinner/LoadingScreen";
-import URLBar from "./components/ui/url-bar";
 import Login from "./pages/Login";
 
 function App() {
@@ -12,13 +10,15 @@ function App() {
   }, 1000);
 
   return (
-    <div >
+    <div className="h-screen flex flex-col">
       {isLoading ? (
         <LoadingScreenComponent />
       ) : (
-        <div className="bg-zinc-900 w-full h-screen flex items-center justify-center flex-col">
-          <URLBar />
-          <Login />
+        <div className="bg-zinc-900 flex-1 flex flex-col">
+          {/* <URLBar /> */}
+          <div className="flex-1 flex items-center justify-center">
+            <Login />
+          </div>
         </div>
       )}
     </div>

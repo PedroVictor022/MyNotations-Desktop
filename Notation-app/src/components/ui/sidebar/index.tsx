@@ -39,8 +39,7 @@ export default function Sidebar() {
 
   return (
     <div
-      // className="w-full p-4 absolute top-0 gap-4 bg-transparent text-gray-400 rounded-full flex items-center justify-center"
-      className="absolute top-1 p-4"
+      className="pt-16"
     >
       <div className="border-[1px] p-2 rounded-lg flex flex-col gap-4">
         {menuOptions.map((item) => (
