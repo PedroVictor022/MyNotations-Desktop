@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../../components/ui/sidebar";
 import URLBar from "../../components/ui/url-bar";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../../components/ui/side-bar";
 
 interface MatterProps {
   id: string;
@@ -30,10 +30,11 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className="bg-zinc-900 w-full h-screen flex flex-col items-center justify-center">
-      <p className="text-gray-200">Menu</p>
-      <button onClick={() => navigate("/updates")}>Updates</button>
-      <button onClick={() => navigate("update")}>Updates children</button>
+    <div className="bg-zinc-900 h-screen pt-12 w-full flex items-start justify-between text-white">
+      <Sidebar />
+      <div className="w-full h-full p-2">
+        
+      </div>
     </div>
   );
 }

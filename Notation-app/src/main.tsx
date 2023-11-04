@@ -6,13 +6,13 @@ import {
   BrowserRouter,
   createBrowserRouter,
   Route,
-  RouterProvider,
+  // RouterProvider,
   Routes,
 } from "react-router-dom";
 import URLBar from "./components/ui/url-bar/index.tsx";
 import Home from "./pages/Home/index.tsx";
-import Sidebar from "./components/ui/sidebar/index.tsx";
 import Update from "./pages/Updates/index.tsx";
+import HomePage from "./pages/Home/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -54,15 +54,15 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
-    <RouterProvider router={router} />
-    {/* <BrowserRouter>
+    {/* <RouterProvider router={router} /> */}
+    <BrowserRouter>
       <URLBar />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Home />}  />
         <Route path="/updates" element={<Update />} />
       </Routes>
-    </BrowserRouter> */}
+    </BrowserRouter>
   </>
 );
 

@@ -23,7 +23,7 @@ export default function URLBar() {
   };
 
   return (
-    <div className="w-full min-w-[340px] absolute p-4 gap-4 bg-transparent rounded-full flex items-center justify-center ">
+    <div className="w-full min-w-[340px] absolute p-4 gap-4 bg-transparent rounded-full flex items-center justify-center">
       <button
         className="text-gray-600 hover:text-gray-50 text-xl transition-colors"
         onClick={handleBackToHome}
