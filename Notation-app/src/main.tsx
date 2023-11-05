@@ -4,7 +4,6 @@ import "./index.css";
 
 import {
   BrowserRouter,
-  createBrowserRouter,
   Route,
   // RouterProvider,
   Routes,
@@ -12,45 +11,6 @@ import {
 import URLBar from "./components/ui/url-bar/index.tsx";
 import Home from "./pages/Home/index.tsx";
 import Update from "./pages/Updates/index.tsx";
-import HomePage from "./pages/Home/index.tsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <>
-        <URLBar />
-        <App />
-      </>
-    ),
-  },
-  {
-    path: "home",
-    element: (
-      <>
-        <URLBar />
-        <Home />
-      </>
-    ),
-    children: [
-      {
-        path: "update",
-        element: <App/>,
-        
-      }
-    ]
-  },
-  {
-    path: "updates",
-    element: (
-      <>
-        <URLBar />
-        <Update />
-      </>
-    ),
-    
-  }
-]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
