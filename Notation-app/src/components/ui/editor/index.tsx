@@ -1,59 +1,51 @@
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import {
-  useEditor,
-  EditorContent,
-  BubbleMenu,
-  FloatingMenu,
-} from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-// import lowlight from "lowlight";
-import "highlight.js/styles/github-dark.css";
-import { BubbleButton } from "./BubbleButton";
+import React, { useEffect, useState } from 'react';
 
-import {
-  RxFontBold,
-  RxFontItalic,
-  RxStrikethrough,
-  RxCode,
-  RxChevronDown,
-  RxChatBubble,
-} from "react-icons/rx";
+function formatText(text: string, type: string) {
+  switch(type) {
+    case 'bold': 
+      return text.bold();
+    case 'italic': 
+      return text.italics();
+    default: 
+      return text;
+  }
+}
 
-export default function Editor() {
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      // CodeBlockLowlight.configure({
-      // //   lowlight,
-      //   defaultLanguage: "javascript",
-      // }),
-    ],
-    content: "<h2>Escreva suas notas aqui!</h2>",
-    editorProps: {
-      attributes: {
-        class: "outline-none",
-      },
-    },
-  });
+const Editor = () => {
+  const [text, setText] = useState("");
+
+  const handleChangeText = (e: any) => {
+    setText(e.target.value);
+  }
+
+  const handleSelect  = (start: number, end: number) => {
+    const selectText = text.slice(start, end);
+    setText(text.replace(selectText, 'New text'));
+  }
+
+  const handleFormat = (type: string) => {
+    const selectedText = text.slice(start, end);
+    const formattedText = formatText(selectedText, type);
+    setText(text.replace(selectedText, formattedText));
+  };
 
   return (
     <>
-      <EditorContent editor={editor} className="m-6 bg-zinc-500" />
-      {editor && (
-        <BubbleMenu
-          editor={editor}
-          className="bg-zinc-800 shadow-lg border border-zinc-600 shadow-black/20 rounded-lg overflow-hidden flex divide-x divide-zinc-600"
-        >
-          <div>
-            <BubbleButton>
-              <RxFontBold className="w-4  h-4" />
-            </BubbleButton>
-            <BubbleButton>
-               <RxFontItalic className="w-4 h-4"/>
-            </BubbleButton>
-          </div>
-        </BubbleMenu>
-      )}
+      <div>
+        <button onClick={() => handleSelect (0, text.length)}>Selecionar tudo</button>
+        <button onClick={() => handleFormat('bold')}>Negrito</button>
+        <button onClick={() => handleFormat('italic')}>Itálico</button>
+      </div>
+
+      <div>
+        <textarea value={text} onChange={handleChangeText} className='w-full resize-none' />
+      </div>
+
+      {
+        text
+      }
     </>
-  );
+  )
 }
+
+export default Editor
