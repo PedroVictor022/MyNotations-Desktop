@@ -30,7 +30,7 @@ function App() {
 
       {/* EDITOR DE TEXTO + PAGINAS */}
       <div  className="max-h-[430px] max-w-[440px] w-[440px] overflow-y-auto">
-        <Editor />
+        
       </div>
 
       {/* GOOGLE INTEGRATION */}
