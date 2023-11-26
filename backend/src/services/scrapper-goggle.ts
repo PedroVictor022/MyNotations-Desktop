@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 
 // SCRAPPER QCONCURSO NOTICIAS
 export async function ScrapperService() {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
 
   await page.goto(
@@ -11,23 +11,47 @@ export async function ScrapperService() {
 
   await page.setViewport({ width: 1080, height: 1024 });
 
-  const newsElement = await page.$$(".c-PJLV .c-PJLV-igoYWAn-css");
+  const PrincipalNews = await page.$$(".c-PJLV .c-PJLV-igoYWAn-css");
 
   // map for elements
-  for (const psEl of newsElement) {
-    const moreTexts = await page.evaluate(
-      (el) => el.querySelector("div > ul").textContent,
-      psEl
+  for (const newsEl of PrincipalNews) {
+    const t1 = await page.evaluate(
+      (el) =>
+        el?.querySelector(
+          "div > div:nth-child(1) > ul > li:nth-child(1) > a > h2"
+        )?.textContent,
+      newsEl
+    );
+    const t2 = await page.evaluate(
+      (el) =>
+        el?.querySelector(
+          "div > div:nth-child(1) > ul > li:nth-child(2) > a > h2"
+        )?.textContent,
+      newsEl
+    );
+    const t3 = await page.evaluate(
+      (el) =>
+        el?.querySelector(
+          "div > div:nth-child(1) > ul > li:nth-child(3) > a > h2"
+        )?.textContent,
+      newsEl
+    );
+    const t4 = await page.evaluate(
+      (el) =>
+        el?.querySelector(
+          "div > div:nth-child(1) > ul > li:nth-child(4) > a > h2"
+        )?.textContent,
+      newsEl
     );
 
-    const titlesNews = await page.evaluate(
-      (el) => el.querySelector("div > a").textContent,
-      psEl
-    );
-
-    console.log(titlesNews);
-    console.log(moreTexts);
+    return [t1, t2, t3, t4];
   }
+
+  // const newsDistric = await page.$$("body > main > div:nth-child(2) > div > div:nth-child(9)");
+  // for(const ndEl of newsDistric) {
+  //   console.log(ndEl);
+  //   const sd1 = await page.evaluate((el) => el?.querySelector(""))
+  // }
 
   return "ok";
 }
