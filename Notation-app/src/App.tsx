@@ -5,7 +5,7 @@ import News from "./components/ui/news/news";
 
 function App() {
   return (
-    <div className="bg-zinc-900 w-full h-screen pt-12 min-w-[300px] flex flex-col items-center">
+    <div className="bg-zinc-900 w-full h-screen pt-12 min-w-[300px] flex flex-col items-center overflow-x-hidden">
       {/* NOTICIAS */}
       <div className="max-h-[430px] max-w-[440px] w-[440px] overflow-y-auto pt-4">
         <News />
