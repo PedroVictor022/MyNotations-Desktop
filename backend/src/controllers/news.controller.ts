@@ -5,10 +5,7 @@ import { ScrapperService } from "../services/qconcurso-news";
 class News {
   async getNews(req: Request, res: Response) {
       const scrapper = await ScrapperService();
-
-      console.log(scrapper);
-
-    return res.send("OK NEWS RETURNED");
+    return res.send(scrapper);
   }
 }
 
