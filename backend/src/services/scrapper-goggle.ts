@@ -1,5 +1,10 @@
 import puppeteer from "puppeteer";
 
+type NewsProps = {
+  id: number | string,
+  content: string | null | any
+}
+
 // SCRAPPER QCONCURSO NOTICIAS
 export async function ScrapperService() {
   const browser = await puppeteer.launch({ headless: "new" });
@@ -12,7 +17,8 @@ export async function ScrapperService() {
   await page.setViewport({ width: 1080, height: 1024 });
 
   const PrincipalNews = await page.$$(".c-PJLV .c-PJLV-igoYWAn-css");
-
+  const newsArray: NewsProps[] = [];
+  let id = 1;
   // map for elements
   for (const newsEl of PrincipalNews) {
     const t1 = await page.evaluate(
@@ -22,6 +28,10 @@ export async function ScrapperService() {
         )?.textContent,
       newsEl
     );
+    newsArray.push({
+      id: id++,
+      content: t1
+    })
     const t2 = await page.evaluate(
       (el) =>
         el?.querySelector(
@@ -29,6 +39,10 @@ export async function ScrapperService() {
         )?.textContent,
       newsEl
     );
+    newsArray.push({
+      id: id++,
+      content: t2
+    })
     const t3 = await page.evaluate(
       (el) =>
         el?.querySelector(
@@ -36,6 +50,10 @@ export async function ScrapperService() {
         )?.textContent,
       newsEl
     );
+    newsArray.push({
+      id: id++,
+      content: t3
+    })
     const t4 = await page.evaluate(
       (el) =>
         el?.querySelector(
@@ -43,15 +61,10 @@ export async function ScrapperService() {
         )?.textContent,
       newsEl
     );
-
-    return [t1, t2, t3, t4];
+    newsArray.push({
+      id: id++,
+      content: t4
+    })
+    return newsArray;
   }
-
-  // const newsDistric = await page.$$("body > main > div:nth-child(2) > div > div:nth-child(9)");
-  // for(const ndEl of newsDistric) {
-  //   console.log(ndEl);
-  //   const sd1 = await page.evaluate((el) => el?.querySelector(""))
-  // }
-
-  return "ok";
 }
