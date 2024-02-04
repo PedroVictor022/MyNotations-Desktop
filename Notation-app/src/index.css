@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@layer utilities {
-   .editor-container {
-      max-height: 400px;
-      overflow-y: auto;
-   }
-}
